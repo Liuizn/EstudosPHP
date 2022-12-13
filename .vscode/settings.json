@@ -1,0 +1,18 @@
+{
+    "cSpell.language": ",pt,pt_BR",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "192.168.0.9",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "FacDB",
+            "database": "fac_paracatu_mg_prev",
+            "username": "root",
+            "password": "447466"
+        }
+    ]
+}
