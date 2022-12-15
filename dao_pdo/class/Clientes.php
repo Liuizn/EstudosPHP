@@ -42,6 +42,30 @@
             return $this->database->select("SELECT * FROM clientes", $params);
         }
 
+        public function registerCustomer():bool
+        {
+            $params = array(
+                ":NOME"      => $this->getNome(),
+                ":EMAIL"     => $this->getEmail(),
+                ":CARTEIRA"  => $this->getCarteira(),
+                ":LOGIN"     => $this->getLogin(),
+                ":SENHA"     => $this->getSenha(),
+                ":DATE"      => $this->getDate()
+            );
+
+            $result = $this->database->executeQuery("INSERT INTO clientes (nome,email,carteira,login,senha,date) VALUES :NOME,:EMAIL,:CARTEIRA,:LOGIN,:SENHA,:DATE", $params);
+
+            $this->database->commit();
+
+            if($result)
+            {
+
+                return false;
+            }
+
+            return true;
+        }
+
         public function __toString()
         {
             return json_encode(array(
@@ -54,7 +78,7 @@
             ));
         }
 
-        private function setNome($value)
+        public function setNome($value)
         {
             $this->nome = $value;
         }
@@ -64,7 +88,7 @@
             return $this->nome;
         }
 
-        private function setEmail($value)
+        public function setEmail($value)
         {
             $this->email = $value;
         }
@@ -74,7 +98,7 @@
             return $this->email;
         }
 
-        private function setCarteira($value)
+        public function setCarteira($value)
         {
             $this->carteira = $value;
         }
@@ -84,7 +108,7 @@
             return $this->carteira;
         }
 
-        private function setLogin($value)
+        public function setLogin($value)
         {
             $this->login = $value;
         }
@@ -94,7 +118,7 @@
             return $this->login;
         }
 
-        private function setSenha($value)
+        public function setSenha($value)
         {
             $this->senha = $value;
         }
@@ -104,7 +128,7 @@
             return $this->senha;
         }
 
-        private function setDate($value)
+        public function setDate($value)
         {
             $this->date = $value;
         }

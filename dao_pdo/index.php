@@ -8,12 +8,32 @@
 
     // echo json_encode($usuarios);
 
+
+
+    // --- TABELA CLIENTES ---
+
     $cliente = new Clientes();
 
+    // -- SELECT por ID --
+
     // $cliente->loadById(1);
+    // echo $cliente
 
-    $listaClientes = $cliente->getList();
+    // -- SELECT PEGANDO TUDO --
 
-    print_r($listaClientes);
+    // $listaClientes = $cliente->getList();
+    // echo $listaClientes;
+
+    // -- CADASTRANDO NOVO USUÁRIO --
+    $cliente->setNome("BRUNO HENRIQUE MAMADINHAS");
+    $cliente->setEmail("bruno.henrique@yahoo.com");
+    $cliente->setCarteira("Motorista");
+    $cliente->setLogin("brunelson");
+    $cliente->setSenha("123654789");
+    $cliente->setDate(date('Y-m-d H:i:s'));
+
+    $cliente->registerCustomer();
+
+    echo $cliente;
 
 ?>

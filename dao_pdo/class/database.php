@@ -9,6 +9,9 @@ class Database extends PDO {
         try
         {
             $this->conn = new PDO("mysql:host=localhost;dbname=juntei_financeiro", "root", "447466");
+
+            $this->conn->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e)
         {
@@ -24,10 +27,9 @@ class Database extends PDO {
         }
     }
 
-    private function setParam($statment, $key, $value){
-
+    private function setParam($statment, $key, $value)
+    {
         $statment->bindParam($key, $value);
-
     }
 
     public function executeQuery($rawQuery, $params = array())
@@ -36,11 +38,17 @@ class Database extends PDO {
 
         $this->setParams($stmt, $params);
 
-        $stmt->execute();
+        try
+        {
+            $stmt->execute();
+        }
+        catch(PDOException $e)
+        {
+            echo 'Error: ' . $e->getMessage();
 
-        return $stmt;
+            return $stmt;
+        }
     }
-
     public function select($rawQuery, $params = array()):array
     {
         $stmt = $this->executeQuery($rawQuery, $params);
