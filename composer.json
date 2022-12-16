@@ -1,0 +1,14 @@
+{
+    "name": "vendor/estudosphp",
+    "description": "projeto com a proposta de estudos do PHP",
+    "type": "project",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Luiz Gabriel Dos Santos Nogueira",
+            "email": "luizgabrielsnn@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

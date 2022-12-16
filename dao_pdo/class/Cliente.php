@@ -1,9 +1,10 @@
 <?php
 
-    class Clientes
+    class Cliente
     {
         private $database;
 
+        private $id;
         private $nome;
         private $email;
         private $carteira;
@@ -19,13 +20,14 @@
         public function loadById(int $id)
         {
             $params = array(
-                ":ID" => $id
+                ":client" => $id
             );
 
-            $result = $this->database->select("SELECT * FROM clientes WHERE id = :ID", $params);
+            $result = $this->database->select("SELECT * FROM clientes WHERE id = :client", $params);
 
             if(empty($result) === false)
             {
+                $this->setId($result[0]['id']);
                 $this->setNome($result[0]['nome']);
                 $this->setEmail($result[0]['email']);
                 $this->setCarteira($result[0]['carteira']);
@@ -42,7 +44,23 @@
             return $this->database->select("SELECT * FROM clientes", $params);
         }
 
-        public function registerCustomer():bool
+        public function delete():bool
+        {
+            $params = array(
+                ":ID" => $this->getId()
+            );
+
+            $result = $this->database->executeQuery("DELETE FROM clientes WHERE id = :ID", $params);
+
+            if($result === false)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public function insert():bool
         {
             $params = array(
                 ":NOME"      => $this->getNome(),
@@ -53,18 +71,43 @@
                 ":DATE"      => $this->getDate()
             );
 
-            $result = $this->database->executeQuery("INSERT INTO clientes (nome,email,carteira,login,senha,date) VALUES :NOME,:EMAIL,:CARTEIRA,:LOGIN,:SENHA,:DATE", $params);
-
-            $this->database->commit();
+            $result = $this->database->executeQuery("INSERT INTO clientes (nome,email,carteira,login,senha,date) VALUES (:NOME, :EMAIL, :CARTEIRA, :LOGIN, :SENHA,:DATE)", $params);
 
             if($result)
             {
-
                 return false;
             }
 
             return true;
         }
+
+        public function updatePassword():bool
+        {
+            $params = array(
+                ":PASSWORD" => $this->getSenha(),
+                ":ID"       => $this->getId()
+            );
+
+            $result = $this->database->executeQuery("UPDATE clientes SET senha = :PASSWORD WHERE id = :ID", $params);
+
+            if($result === false)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public function setId($value) 
+        {
+            $this->id = $value;
+        }
+
+        public function getId()
+        {
+            return $this->id;
+        }
+
 
         public function __toString()
         {

@@ -1,4 +1,9 @@
 <?php
+    
+    // var_dump("teste");
+
+    // phpinfo();die;
+
 
     require_once("config.php");
 
@@ -11,9 +16,8 @@
 
 
     // --- TABELA CLIENTES ---
-
-    $cliente = new Clientes();
-
+    $cliente = new Cliente();
+    
     // -- SELECT por ID --
 
     // $cliente->loadById(1);
@@ -24,16 +28,54 @@
     // $listaClientes = $cliente->getList();
     // echo $listaClientes;
 
-    // -- CADASTRANDO NOVO USUÁRIO --
-    $cliente->setNome("BRUNO HENRIQUE MAMADINHAS");
-    $cliente->setEmail("bruno.henrique@yahoo.com");
-    $cliente->setCarteira("Motorista");
-    $cliente->setLogin("brunelson");
-    $cliente->setSenha("123654789");
-    $cliente->setDate(date('Y-m-d H:i:s'));
+    // -- CADASTRANDO NOVO CLIENTE --
+    // $cliente->setNome("AAAAAA HENRIQUE MAMADINHAS");
+    // $cliente->setEmail("AAAAAA.henrique@yahoo.com");
+    // $cliente->setCarteira("Motorista");
+    // $cliente->setLogin("brunelson");
+    // $cliente->setSenha("123654789");
+    // $cliente->setDate(date('Y-m-d H:i:s'));
 
-    $cliente->registerCustomer();
+    // $result = $cliente->insert();
 
-    echo $cliente;
+    // if($result === true)
+    // {
+    //     echo json_encode("DEU TUDO CERTO");
+    // }
+    // else
+    // {
+    //     echo json_encode("DEU TUDO errado");
+    // }
+
+
+    // -- Atualizando Senha do Cliente
+    // $cliente->loadById(1);
+
+    // $cliente->setSenha("Senha NOVA");
+
+    // $result = $cliente->updatePassword();
+    
+    // if($result === true)
+    // {
+    //     echo json_encode("DEU TUDO CERTO");
+    // }
+    // else
+    // {
+    //     echo json_encode("DEU TUDO errado");
+    // }
+
+
+    // --Deletando um Cliente --
+    $cliente->setId(10);
+    $result = $cliente->delete();
+
+    if($result === true)
+    {
+        echo json_encode("DEU TUDO CERTO");
+    }
+    else
+    {
+        echo json_encode("DEU TUDO errado");
+    }
 
 ?>
