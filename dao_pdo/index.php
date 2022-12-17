@@ -1,10 +1,5 @@
 <?php
     
-    // var_dump("teste");
-
-    // phpinfo();die;
-
-
     require_once("config.php");
 
     // $sql = new Database();
@@ -14,17 +9,16 @@
     // echo json_encode($usuarios);
 
 
-
     // --- TABELA CLIENTES ---
     $cliente = new Cliente();
     
     // -- SELECT por ID --
-
     // $cliente->loadById(1);
     // echo $cliente
 
-    // -- SELECT PEGANDO TUDO --
 
+
+    // -- SELECT PEGANDO TUDO --
     // $listaClientes = $cliente->getList();
     // echo $listaClientes;
 
@@ -38,14 +32,6 @@
 
     // $result = $cliente->insert();
 
-    // if($result === true)
-    // {
-    //     echo json_encode("DEU TUDO CERTO");
-    // }
-    // else
-    // {
-    //     echo json_encode("DEU TUDO errado");
-    // }
 
 
     // -- Atualizando Senha do Cliente
@@ -55,6 +41,16 @@
 
     // $result = $cliente->updatePassword();
     
+
+
+    // --Deletando um Cliente --
+    // $cliente->setId(10);
+    // $result = $cliente->delete();
+
+
+
+
+    // RESULTADO DO PROCESSO
     // if($result === true)
     // {
     //     echo json_encode("DEU TUDO CERTO");
@@ -63,19 +59,5 @@
     // {
     //     echo json_encode("DEU TUDO errado");
     // }
-
-
-    // --Deletando um Cliente --
-    $cliente->setId(10);
-    $result = $cliente->delete();
-
-    if($result === true)
-    {
-        echo json_encode("DEU TUDO CERTO");
-    }
-    else
-    {
-        echo json_encode("DEU TUDO errado");
-    }
 
 ?>
