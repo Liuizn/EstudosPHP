@@ -8,6 +8,9 @@
 
         private function __construct()
         {
-            
+            $this->db_host     = 'localhost';
+            $this->db_dbname   = 'juntei_financeiro';
+            $this->db_user     = 'root';
+            $this->db_password = '';
         }
     }
